@@ -1,10 +1,8 @@
 import numpy as np
 
-def f(x):
-    return x**2
-
 # Riemann with Left side
-def RiemannLeftExt(a, b, n):
+def RiemannLeftExt(a, b, n, f):
+    print("-------------------------Método Riemann-------------------------")
     dx = (b - a) / n
     xi = np.linspace(a,b,n+1)
 
@@ -14,12 +12,10 @@ def RiemannLeftExt(a, b, n):
         areaX = dx * f(xi[i])
         areaT = areaT + areaX
         
-        print(areaT) 
-
-RiemannLeftExt(0,3,5)
+    print("Riemann por izq: ",areaT) 
 
 # Riemann with MidPoint
-def RiemannMid(a, b, n):
+def RiemannMid(a, b, n, f):
     dx = (b - a) / n
     xi = np.linspace(a,b,n+1)
     areaT = 0
@@ -29,12 +25,10 @@ def RiemannMid(a, b, n):
         areaX = dx * f(mid)
         areaT = areaT + areaX
         
-        print(areaT) 
-
-RiemannMid(0,3,5)
+    print("Riemann por cen: ",areaT) 
 
 # Riemann with Right side
-def RiemannRightExt(a, b, n):
+def RiemannRightExt(a, b, n, f):
     dx = (b - a) / n
     xi = np.linspace(a,b,n+1)
 
@@ -44,6 +38,4 @@ def RiemannRightExt(a, b, n):
         areaX = dx * f(xi[i+1])
         areaT = areaT + areaX
         
-        print(areaT) 
-
-RiemannRightExt(0,3,5)
+    print("Riemann por der: ",areaT)

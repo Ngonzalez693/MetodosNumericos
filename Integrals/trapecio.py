@@ -5,7 +5,8 @@ import numpy as np
 def f(x):
     return x**2
 
-def trapeze(a, b, n):
+def trapeze(a, b, n, f):
+    print("-------------------------Método Trapecio------------------------")
     dx = (b - a) / n
 
     areaT = 0
@@ -16,11 +17,9 @@ def trapeze(a, b, n):
         
     print("Trapecio: ",areaT)
 
-trapeze(0,3,5)
-
 # n Trapezes
 
-def ntrapeze(a, b, n):
+def ntrapeze(a, b, n, f):
     xi = np.linspace(a,b,n+1)
 
     count = 0
@@ -31,5 +30,3 @@ def ntrapeze(a, b, n):
     integral = (b-a)*(f(xi[0])+f(xi[n])+2*count)/(2*n)
 
     print("n Trapecios: ",integral)
-
-ntrapeze(0,3,5)

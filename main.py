@@ -1,31 +1,62 @@
-from fixPoint import fix_point 
-from bisection import bisection 
-from falsPos import false_position 
-from newRap import newton_raphson 
-from secant import sec
-from multipleRoot import mul_New_Rap
-from intervals import Search_Interval
-from derivatives import mainDerivates
+# Imports from FindRoots
+from FindRoots import fixPoint 
+from FindRoots import bisection 
+from FindRoots import falsPos 
+from FindRoots import newRap 
+from FindRoots import secant
+from FindRoots import multipleRoot
+from FindRoots import intervals
+from FindRoots import derivatives
+
+# Imports from integrals
+from Integrals import Riemann
+from Integrals import trapecio
+from Integrals import Simpson
+from Integrals import Romberg
+from Integrals import gaussSeidel
+from Integrals import jacobi
+from Integrals import jacobiMatriz
+
+# imports for operations
+import math
 import matplotlib.pyplot as plt
 import numpy as np
 
-# Test functions (to find errors)
-# 20**x+x --> punto fijo(despejar para g(x))
-# x**5-5 --> punto fijo, newrap, multiples (Creo que no converge)
-# 0.5**4-x --> punto fijo(despejar para g(x))
-
+# Menus
 def menu1():
+    print("-------------------------Menú Principal-------------------------")
+    print(" 1. Raíces y Derivadas\n",
+          "2. Integrales\n",
+          "3. Matirces\n")
+
+def menu2():
+    print("----------------------------------------------------------------")
     print(" 1. Encontrar derivadas\n",
           "2. Buscar Raíces\n")
 
-def menu2():
-    print(" 1. Método de Punto Fijo\n",
+def menu3():
+    print("--------------------------Menú Raíces---------------------------")
+    print(" 1. Método de Punto Fijo (Modificar para g(x))\n",
           "2. Método de Bisección\n",
           "3. Método de Falsa Posición\n",
           "4. Método de Newton-Raphson\n",
           "5. Método de la Secante\n",
           "6. Método de Raíces Múltiples (Newton-Raphson modificado)")
-
+    
+def menu4():
+    print("-------------------------Menú Integrales------------------------")
+    print(" 1. Integral por Riemann\n",
+          "2. Integral por Trapecios\n",
+          "3. Integral por Simpson\n",
+          "4. Integral por Romberg\n")
+    
+def menu5():
+    print("-------------------------Menú Matrices--------------------------")
+    print(" 1. Matriz de GaussSeidel\n",
+          "2. Matriz de Jacobi (Lambdas)\n",
+          "3. Matriz de Jacobi (Algebra Matricial)\n")
+    
+# Grafic Function
 def graphic_function(f : callable, x_range = (-20, 20), step = 0.1):
     x = np.arange(x_range[0], x_range[1], step)
     y = []
@@ -44,72 +75,118 @@ def graphic_function(f : callable, x_range = (-20, 20), step = 0.1):
     plt.ylabel('y')
     plt.grid(True)
     plt.show()
+    
+# Function
+def f(x):
+    return x**2
+    #return math.exp(-x)-x
+    #return math.cos(x)
+    #return math.sin(x)
 
 menu1()
-menu = int(input("Qué acción quiere realizar?\n"))
+mainMenu = int(input("Qué acción quiere realizar?\n"))
 
-if menu== 1:
-    function = input("Ingrese una función en términos de 'x': ") # Ask for function
-    f = lambda x: eval(function) # Convert function in terms of lambda x
-    valueX = float(input("En que valor de X quiere la aproximación?\n"))
-
-    mainDerivates(f, valueX)
-    graphic_function(f)
-
-elif menu == 2:
-    function = input("Ingrese una función en términos de 'x': ") # Ask for function
-    f = lambda x: eval(function) # Convert function in terms of lambda x
-
+if mainMenu == 1: # Derivatives and Find roots
     menu2()
-    metod = int(input("Qué método desea usar?\n")) # Options to select metod
+    menuRaizDeri = int(input("Qué acción quiere realizar?\n"))
 
-    # Fixed Point Metodo
-    if metod == 1:
-        x0 = 1
-        fix_point(x0, f)
+    if menuRaizDeri== 1:
+        valueX = float(input("En que valor de X quiere la aproximación?\n"))
+
+        derivatives.mainDerivates(f, valueX)
         graphic_function(f)
 
-    # Bisection Metod
-    elif metod == 2:
-        intervals = Search_Interval(f, -100, 100)
-        if intervals:
-            x0, x1 = intervals[-1]
-            bisection(x0, x1, f)
+    elif menuRaizDeri == 2:
+        menu3()
+        rootMetod = int(input("Qué método desea usar?\n")) # Options to select metod
+
+        # Fixed Point Metod
+        if rootMetod == 1:
+            x0 = 1
+            fixPoint.fix_point(x0, f)
+            graphic_function(f)
+
+        # Bisection Metod
+        elif rootMetod == 2:
+            intervals = intervals.Search_Interval(f, -100, 100)
+            if intervals:
+                x0, x1 = intervals[-1]
+                bisection(x0, x1, f)
+            else:
+                print("No se encontraron intervalos para aplicar el método de bisección.")
+            graphic_function(f)
+
+        # False Position Metod
+        elif rootMetod == 3:
+            intervals = intervals.Search_Interval(f, -100, 100)
+            if intervals:
+                x0, x1 = intervals[-1]
+                falsPos.false_position(x0, x1, f)
+            else:
+                print("No se encontraron intervalos para aplicar el método de falsa posición.")
+            graphic_function(f)
+
+        # Newton-Raphson Metod
+        elif rootMetod == 4:
+            x0 = 0
+            newRap.newton_raphson(x0, f)
+            graphic_function(f)
+
+        # Secant Metod
+        elif rootMetod == 5:
+            intervals = intervals.Search_Interval(f, -100, 100)
+            if intervals:
+                x0, x1 = intervals[-1]
+                secant.sec(x0, x1, f)
+            else:
+                print("No se encontraron intervalos para aplicar el método de la secante.")
+            graphic_function(f)
+
+        # Multiple Roots
+        elif rootMetod == 6:
+            x0 = 0
+            multipleRoot.mul_New_Rap(x0, f)
+            graphic_function(f)
+
         else:
-            print("No se encontraron intervalos para aplicar el método de bisección.")
-        graphic_function(f)
+            print("Método no reconocido.")
 
-    # False Position Metod
-    elif metod == 3:
-        intervals = Search_Interval(f, -100, 100)
-        if intervals:
-            x0, x1 = intervals[-1]
-            false_position(x0, x1, f)
-        else:
-            print("No se encontraron intervalos para aplicar el método de falsa posición.")
-        graphic_function(f)
+elif mainMenu == 2: # Integrals
+    menu4()
+    integralMetod = int(input("Qué método desea usar?\n")) # Options to select metod
 
-    # Newton-Raphson Metod
-    elif metod == 4:
-        x0 = 0
-        newton_raphson(x0, f)
-        graphic_function(f)
+    # Riemann Metod
+    if integralMetod == 1:
+        Riemann.RiemannLeftExt(0, 3, 5, f)
+        Riemann.RiemannMid(0, 3, 5, f)
+        Riemann.RiemannRightExt(0, 3, 5, f)
 
-    # Secant Metod
-    elif metod == 5:
-        intervals = Search_Interval(f, -100, 100)
-        if intervals:
-            x0, x1 = intervals[-1]
-            sec(x0, x1, f)
-        else:
-            print("No se encontraron intervalos para aplicar el método de la secante.")
-        graphic_function(f)
+    # Trapeze Metod
+    elif integralMetod == 2:
+        trapecio.trapeze(0, 3, 5, f)
+        trapecio.ntrapeze(0, 3, 5, f)
 
-    # Multiple Roots
-    elif metod == 6:
-        x0 = 0
-        mul_New_Rap(x0, f)
-        graphic_function(f)
+    # Simpson Metod
+    elif integralMetod == 3:
+        Simpson.Simpson(0, 3, 3, f)
+        Simpson.nSimpson(0, 3, 8, f)
 
-    else:
-        print("Método no reconocido.")
+    # Romberg Metod
+    elif integralMetod == 4:
+        Romberg.Romberg(0,3,4,f)
+
+elif mainMenu == 3: # Matrixs
+    menu5()
+    matrixMetod = int(input("Qué método desea usar?\n")) # Options to select metod
+
+    # Gauss-Seidel Matrix
+    if matrixMetod == 1:
+        gaussSeidel.gaussSeidel()
+
+    # Jacobi Matrix (With Lambdas)
+    if matrixMetod == 2:
+        jacobi.jacobi()
+
+    # Jacobi Matrix (Matrix Algebra)
+    if matrixMetod == 3:
+        jacobiMatriz.jacobiMatriz()

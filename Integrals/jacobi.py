@@ -28,9 +28,9 @@ def jacobi(f1, f2, f3,tol = 0.001):
         
         print('{:d} \t {:.4f} \t {:.4f} \t {:.4f} \t {:.4f}'.format(i+1, x1, y1, z1, error))
 
-print("----------------------------Jacobi----------------------------")
-print('{:s} \t {:<10} \t {:<10} \t {:<10} \t {:s}'.format('Iter', 'x', 'y', 'z', 'error'))
-jacobi(f1, f2, f3)
+#print("----------------------------Jacobi----------------------------")
+#print('{:s} \t {:<10} \t {:<10} \t {:<10} \t {:s}'.format('Iter', 'x', 'y', 'z', 'error'))
+#jacobi(f1, f2, f3)
         
 
     

@@ -34,6 +34,6 @@ def gaussSeidel(A, b, iter, p, tol= 0.001):
 
         print('{:d} \t {:.4f} \t {:.4f} \t {:.4f} \t {:.4f}'.format(i + 1, x1[0], x1[1], x1[2], error))
 
-print("-------------------------Gauss Seidel-------------------------")
-print('{:s} \t {:<10} \t {:<10} \t {:<10} \t {:s}'.format('Iter', 'x', 'y', 'z', 'error'))
-gaussSeidel(A, b, iter, p, tol)
+#print("-------------------------Gauss Seidel-------------------------")
+#print('{:s} \t {:<10} \t {:<10} \t {:<10} \t {:s}'.format('Iter', 'x', 'y', 'z', 'error'))
+#gaussSeidel(A, b, iter, p, tol)

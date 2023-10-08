@@ -15,7 +15,7 @@ def ntrapeze(a, b, n):
     area = (b-a)*(f(xi[0])+f(xi[n])+2*count)/(2*n)
     return area
 
-def Romberg(a, b, n):
+def Romberg(a, b, n, f):
 
     matrix = np.zeros((n,n))
 
@@ -27,6 +27,6 @@ def Romberg(a, b, n):
             matrix[j][k] = (4**(k+1-1)*matrix[j+1-1][k-1]-matrix[j-1][k-1])/(4**(k+1-1)-1)
     
     print("Integral: ", matrix[n-1,n-1])
-    print(matrix)
+    print("\n",matrix)
 
-Romberg(0,3,4)
+#Romberg(0,3,4)

@@ -35,9 +35,9 @@ def jacobiMatriz(A, b, iter, p, tol= 0.001):
         print('{:d} \t {:.4f} \t {:.4f} \t {:.4f} \t {:.4f}'.format(i + 1, x1[0], x1[1], x1[2], error))
 
 
-print("-------------------------Jacobi Matriz-------------------------")
-print('{:s} \t {:<10} \t {:<10} \t {:<10} \t {:s}'.format('Iter', 'x', 'y', 'z', 'error'))
-jacobiMatriz(A, b, iter, p)
+#print("-------------------------Jacobi Matriz-------------------------")
+#print('{:s} \t {:<10} \t {:<10} \t {:<10} \t {:s}'.format('Iter', 'x', 'y', 'z', 'error'))
+#jacobiMatriz(A, b, iter, p)
 
 
 
