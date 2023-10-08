@@ -1,12 +1,24 @@
-from fixPoint import fix_point 
-from bisection import bisection 
-from falsPos import false_position 
-from newRap import newton_raphson 
-from secant import sec
-from multipleRoot import mul_New_Rap
-from intervals import Search_Interval
+# Imports from FindRoots
+from FindRoots import fixPoint 
+from FindRoots import bisection 
+from FindRoots import falsPos 
+from FindRoots import newRap 
+from FindRoots import secant
+from FindRoots import multipleRoot
+from FindRoots import intervals
+from FindRoots import derivatives
+
+# Imports from integrals
+from Integrals import Riemann
+from Integrals import trapecio
+from Integrals import Simpson
+from Integrals import Romberg
+from Integrals import gaussSeidel
+from Integrals import jacobi
+from Integrals import jacobiMatriz
+
+# imports for operations
 import math
-from derivatives import mainDerivates
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -52,7 +64,7 @@ menu = int(input("Qué acción quiere realizar?\n"))
 if menu== 1:
     valueX = float(input("En que valor de X quiere la aproximación?\n"))
 
-    mainDerivates(f, valueX)
+    derivatives.mainDerivates(f, valueX)
     graphic_function(f)
 
 elif menu == 2:
@@ -62,12 +74,12 @@ elif menu == 2:
     # Fixed Point Metodo
     if metod == 1:
         x0 = 1
-        fix_point(x0, f)
+        fixPoint.fix_point(x0, f)
         graphic_function(f)
 
     # Bisection Metod
     elif metod == 2:
-        intervals = Search_Interval(f, -100, 100)
+        intervals = intervals.Search_Interval(f, -100, 100)
         if intervals:
             x0, x1 = intervals[-1]
             bisection(x0, x1, f)
@@ -77,10 +89,10 @@ elif menu == 2:
 
     # False Position Metod
     elif metod == 3:
-        intervals = Search_Interval(f, -100, 100)
+        intervals = intervals.Search_Interval(f, -100, 100)
         if intervals:
             x0, x1 = intervals[-1]
-            false_position(x0, x1, f)
+            falsPos.false_position(x0, x1, f)
         else:
             print("No se encontraron intervalos para aplicar el método de falsa posición.")
         graphic_function(f)
@@ -88,15 +100,15 @@ elif menu == 2:
     # Newton-Raphson Metod
     elif metod == 4:
         x0 = 0
-        newton_raphson(x0, f)
+        newRap.newton_raphson(x0, f)
         graphic_function(f)
 
     # Secant Metod
     elif metod == 5:
-        intervals = Search_Interval(f, -100, 100)
+        intervals = intervals.Search_Interval(f, -100, 100)
         if intervals:
             x0, x1 = intervals[-1]
-            sec(x0, x1, f)
+            secant.sec(x0, x1, f)
         else:
             print("No se encontraron intervalos para aplicar el método de la secante.")
         graphic_function(f)
@@ -104,7 +116,7 @@ elif menu == 2:
     # Multiple Roots
     elif metod == 6:
         x0 = 0
-        mul_New_Rap(x0, f)
+        multipleRoot.mul_New_Rap(x0, f)
         graphic_function(f)
 
     else:
