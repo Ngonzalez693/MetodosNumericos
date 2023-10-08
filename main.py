@@ -181,12 +181,28 @@ elif mainMenu == 3: # Matrixs
 
     # Gauss-Seidel Matrix
     if matrixMetod == 1:
-        gaussSeidel.gaussSeidel()
+        A = np.array([[3, 1, 2],
+                      [2, 1, 1],
+                      [1, 4, 6]])
+        b = np.array(
+            [4, 6, 2]
+        )
+        gaussSeidel.gaussSeidel(A, b, 10, 2, tol= 0.001)
 
     # Jacobi Matrix (With Lambdas)
     if matrixMetod == 2:
-        jacobi.jacobi()
+        f1 = lambda x, y ,z: (4-y-2*z)/3 #3x, f1--> x 
+        f2 = lambda x, y ,z: (6-2*x-z)/1 #y, f2--> y
+        f3 = lambda x, y ,z: (2-x-4*y)/6 #6z, f3--> z
+
+        jacobi.jacobi(f1, f2, f3)
 
     # Jacobi Matrix (Matrix Algebra)
     if matrixMetod == 3:
-        jacobiMatriz.jacobiMatriz()
+        A = np.array([[3, 1, 2],
+                      [2, 1, 1],
+                      [1, 4, 6]])
+        b = np.array(
+            [4, 6, 2]
+        )
+        jacobiMatriz.jacobiMatriz(A, b, 10, 2)

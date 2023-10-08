@@ -2,13 +2,10 @@ import numpy as np
 from numpy import linspace
 import math
 
-f1 = lambda x, y ,z: (4-y-2*z)/3 #3x, f1--> x 
-f2 = lambda x, y ,z: (6-2*x-z)/1 #y, f2--> y
-f3 = lambda x, y ,z: (2-x-4*y)/6 #6z, f3--> z
-
-
-
 def jacobi(f1, f2, f3,tol = 0.001):
+    print("-------------------------Jacobi Lambda-------------------------")
+    print('{:s} \t {:<10} \t {:<10} \t {:<10} \t {:s}'.format('Iter', 'x', 'y', 'z', 'error'))
+    
     iter = 5; p=2; 
     x0 = 0; y0= x0; z0 = x0
 
@@ -26,11 +23,4 @@ def jacobi(f1, f2, f3,tol = 0.001):
             y0 = y1
             z0 = z1
         
-        print('{:d} \t {:.4f} \t {:.4f} \t {:.4f} \t {:.4f}'.format(i+1, x1, y1, z1, error))
-
-#print("----------------------------Jacobi----------------------------")
-#print('{:s} \t {:<10} \t {:<10} \t {:<10} \t {:s}'.format('Iter', 'x', 'y', 'z', 'error'))
-#jacobi(f1, f2, f3)
-        
-
-    
+        print('{:d} \t {:.4f} \t {:.4f} \t {:.4f} \t {:.4f}'.format(i+1, x1, y1, z1, error))  
