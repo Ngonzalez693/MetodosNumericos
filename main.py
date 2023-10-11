@@ -54,7 +54,8 @@ def menu5():
     print("-------------------------Menú Matrices--------------------------")
     print(" 1. Matriz de GaussSeidel\n",
           "2. Matriz de Jacobi (Lambdas)\n",
-          "3. Matriz de Jacobi (Algebra Matricial)\n")
+          "3. Matriz de Jacobi (Algebra Matricial)\n",
+          "4. Matriz identidad")
     
 # Grafic Function
 def graphic_function(f : callable, x_range = (-20, 20), step = 0.1):
@@ -78,8 +79,8 @@ def graphic_function(f : callable, x_range = (-20, 20), step = 0.1):
     
 # Function
 def f(x):
-    return x**2
-    #return math.exp(-x)-x
+    #return x**2
+    return math.exp(-x**2)
     #return math.cos(x)
     #return math.sin(x)
 
@@ -163,17 +164,17 @@ elif mainMenu == 2: # Integrals
 
     # Trapeze Metod
     elif integralMetod == 2:
-        trapecio.trapeze(0, 3, 5, f)
-        trapecio.ntrapeze(0, 3, 5, f)
+        trapecio.trapeze(0, 20000, 5, f)
+        trapecio.ntrapeze(0, 20000, 5, f)
 
     # Simpson Metod
     elif integralMetod == 3:
-        Simpson.Simpson(0, 3, 3, f)
-        Simpson.nSimpson(0, 3, 8, f)
+        Simpson.Simpson(0, 20000, 3, f)
+        Simpson.nSimpson(0, 20000, 8, f)
 
     # Romberg Metod
     elif integralMetod == 4:
-        Romberg.Romberg(0,3,4,f)
+        Romberg.Romberg(0,20000,4,f)
 
 elif mainMenu == 3: # Matrixs
     menu5()
@@ -181,11 +182,11 @@ elif mainMenu == 3: # Matrixs
 
     # Gauss-Seidel Matrix
     if matrixMetod == 1:
-        A = np.array([[3, 1, 2],
-                      [2, 1, 1],
-                      [1, 4, 6]])
+        A = np.array([[6, 2, 1],
+                      [2, 3, 1],
+                      [2, 1, 4]])
         b = np.array(
-            [4, 6, 2]
+            [1, 0, 0]
         )
         gaussSeidel.gaussSeidel(A, b, 10, 2, tol= 0.001)
 
@@ -206,3 +207,25 @@ elif mainMenu == 3: # Matrixs
             [4, 6, 2]
         )
         jacobiMatriz.jacobiMatriz(A, b, 10, 2)
+
+    #Matriz inversa e identidad
+    if matrixMetod == 4:
+        
+        A = np.array([[6, 2, 1, 0],
+                      [2, 3, 1, 0],
+                      [2, 1, 4, 2],
+                      [1, 0, 0, 3]])
+        
+        B = np.linalg.inv(A)
+
+        C = np.dot(A,B)
+
+        print("Matriz")
+        print(A)
+
+        print("\nInversa")
+        print(B)
+
+        print("\nIdentidad")
+        print (C)
+

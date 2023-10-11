@@ -11,7 +11,8 @@ def gaussSeidel(A, b, iter, p, tol= 0.001):
     T = - np.dot(np.linalg.inv(D + L), U)
     c = np.dot(np.linalg.inv(D + L), b)
 
-    x0 = np.array([0, 0, 0])
+    # Change array's lenth depending of matrix lenght
+    x0 = np.array([0, 0, 0, 0])
 
     for i in range(iter):
         x1 = np.dot(T, x0,) + c
