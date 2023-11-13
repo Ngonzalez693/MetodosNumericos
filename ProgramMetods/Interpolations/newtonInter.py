@@ -3,7 +3,7 @@
 import numpy as np
 
 def Newton(a, b, n, f, x):
-    print("-----------------Interpolación por Newton-----------------")
+    print("--------------------Interpolación por Newton--------------------")
     # Matrix
     A = np.zeros((n,n))
     xi = np.linspace(a, b, n)

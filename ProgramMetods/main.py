@@ -17,9 +17,6 @@ from Integrals import gaussSeidel
 from Integrals import jacobi
 from Integrals import jacobiMatriz
 
-# Imports from Probabilities
-from Probabilities import probabilities
-
 # Imports from Regressions
 from Regressions import linear
 from Regressions import polinomial
@@ -40,8 +37,7 @@ def mainMenu():
           "2. Integrales\n",
           "3. Matirces\n",
           "4. Regresiones\n",
-          "5. Interpolaciones\n",
-          "6. Probabilidad\n")
+          "5. Interpolaciones\n")
 
 def derivativesAndRootsMenu():
     print("----------------------------------------------------------------")
@@ -322,13 +318,13 @@ elif mainMenu == 5: # Interpolations
         print("Interpolación por Newton : ", interpolation,"\nError: ",error*100)
     
     elif interpolMetod == 2:
-        lagrannge.Lagrannge()
+        x = 2
+        interpolation = lagrannge.Lagrannge(1,5,5,f,x)
+        error = abs(interpolation - f(2))/(f(2))
+        print("Interpolación por Lagrannge : ", interpolation,"\nError: ",error*100)   
     
     else:
         print("La opción elegida no existe")
 
-#elif mainMenu == 6: # Probabilities
-
 else:
-    print("La opción elegida no existe")
-    
+        print("La opción elegida no existe")   
